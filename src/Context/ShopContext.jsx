@@ -24,12 +24,17 @@ const ShopContextProvider = (props) => {
         .then((data) => setAll_Product(data))
     },[]);
 
-    useEffect(() =>{
-        fetchProductInCart();
-    },[])
+    // useEffect(() =>{
+    //     fetchProductInCart();
+    // },[])
 
     const addToCart = (itemId) =>{
-        if(localStorage.getItem('auth-token')){
+        if (!localStorage.getItem('auth-token')) {
+            
+            window.location.href = 'http://localhost:3000/login';
+            return;
+        }
+        else{
             fetch('http://localhost:4000/addtocart',{
                 method:'POST',
                 headers:{
