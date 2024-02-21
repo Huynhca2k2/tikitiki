@@ -7,7 +7,7 @@ const Popular = () => {
   const [popularPros, setPopularPros] = useState([]);
 
   useEffect(() =>{
-    fetch('http://localhost:4000/popularinwomen')
+    fetch('https://api-node-tiki.onrender.com/popularinwomen')
     .then((response) => response.json())
     .then((data) => setPopularPros(data));
   },[])

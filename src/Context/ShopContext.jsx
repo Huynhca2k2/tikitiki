@@ -19,7 +19,7 @@ const ShopContextProvider = (props) => {
     const [productInCart, setProductInCart] = useState([]);
 
     useEffect(()=>{
-        fetch('http://localhost:4000/allproducts')
+        fetch('https://api-node-tiki.onrender.com/allproducts')
         .then((response) => response.json())
         .then((data) => setAll_Product(data))
     },[]);
@@ -31,11 +31,11 @@ const ShopContextProvider = (props) => {
     const addToCart = (itemId) =>{
         if (!localStorage.getItem('auth-token')) {
             
-            window.location.href = 'http://localhost:3000/login';
+            window.location.href = 'https://tikitiki-ten.vercel.app/login';
             return;
         }
         else{
-            fetch('http://localhost:4000/addtocart',{
+            fetch('https://api-node-tiki.onrender.com/addtocart',{
                 method:'POST',
                 headers:{
                     Accept:'application/form-data',
@@ -53,7 +53,7 @@ const ShopContextProvider = (props) => {
     }
     
     const fetchProductInCart = () => {
-        fetch('http://localhost:4000/productincart',{
+        fetch('https://api-node-tiki.onrender.com/productincart',{
             method:'GET',
             headers:{
                 'auth-token':`${localStorage.getItem('auth-token')}`,
@@ -66,7 +66,7 @@ const ShopContextProvider = (props) => {
     
     const removeFromCart = (itemId) =>{
         if(localStorage.getItem('auth-token')){
-            fetch('http://localhost:4000/removeformcart',{
+            fetch('https://api-node-tiki.onrender.com/removeformcart',{
                 method:'POST',
                 headers:{
                     Accept:'application/form-data',
